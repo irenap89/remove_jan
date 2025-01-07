@@ -1,0 +1,47 @@
+@font-face {
+    font-family: 'Aduma';
+    src: url(./fonts/Aduma_Regular.ttf);
+}
+
+.remove_bg_main{
+    border: 1px solid black;
+    width: 1000px;
+    height: 800px;
+    margin: 0 auto;
+    margin-top: 200px;
+    background-color: #222A34;
+    border-radius: 15px;
+}
+
+.header_cont{
+
+}
+
+.close{
+    margin-top: 15px;
+    margin-left: 15px;
+}
+
+.main_title{
+    color: white;
+    text-align: right;
+    margin-right: 40px;
+    font-family: 'Aduma';
+    font-size: 40px;
+    width: 400px;
+    float: right;
+}
+
+.upload_btn{
+    background-color: #475366;
+    border: 0;
+    color: #ffffff8f;
+    border-radius: 50px;
+    padding: 8px;
+    width: 130px;
+    margin-left: 25px;
+    margin-top: 26px;
+    background-image: url(./assets/Upload.png);
+    background-repeat: no-repeat;
+    background-position: 10px 8px;
+}
