@@ -11,6 +11,7 @@
     margin-top: 200px;
     background-color: #222A34;
     border-radius: 15px;
+    position: relative;
 }
 
 .header_cont{
@@ -45,4 +46,147 @@
     background-repeat: no-repeat;
     background-position: 10px 8px;
 
+}
+
+.header_text{
+    color: #ffffffab;
+    direction: rtl;
+    width: 160px;
+    top: 60px;
+    position: absolute;
+    left: 185px;
+}
+
+.middle_cont{
+    display: flex;
+    flex-direction: row-reverse;
+    width: 100%;
+    justify-content: center;
+    gap: 6px;
+}
+
+.right_div{
+    width: 29%;
+    height: 626px;
+    border-radius: 10px;
+    background-color: #2F3A4B;
+}
+
+
+.left_div{
+    width: 69%;
+    height: 626px;
+    border-radius: 10px;
+    background-color: #2F3A4B;
+    position: relative;
+}
+
+
+.footer_cont{
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    justify-content: space-between;
+    margin-right: 8px;
+    margin-left: 15px;
+}
+
+.banner{
+    width: 808px;
+}
+
+.left_div_inner, .right_div_inner{
+    height: 80%;
+    margin-top: 64px;
+    background-color: #161B21;
+}
+
+.tabs_cont{
+    position: absolute;
+    color: white;
+    font-size: 24px;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-start;
+    width: 100%;
+    gap: 0;
+    margin-top: 20px;
+    right: 0;
+    font-family: 'Aduma';
+}
+
+.tabs_1,.tabs_2{
+    width: 130px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.tab_selected{
+    border-bottom: 3px solid #9C27B0;
+    padding-bottom: 12px;
+}
+
+.tabs_1{
+    background-image: url(./assets/CleanupEdges.png);
+    background-repeat: no-repeat;
+    background-position: 90% 10px;
+}
+
+.tabs_2{
+    background-image: url(./assets/Image.png);
+    background-repeat: no-repeat;
+    background-position: 90% 10px;
+}
+
+.upload_btn_takanon{
+    background-color: #475366;
+    border: 0;
+    color: #ffffff8f;
+    border-radius: 50px;
+    padding: 8px;
+    width: 130px;
+    margin-left: 25px;
+    margin-top: 16px;
+    background-image: url(./assets/eula.png);
+    background-repeat: no-repeat;
+    background-position: 13px 10px;
+    cursor: pointer;
+}
+
+.left_div_footer{
+    position: relative;
+}
+
+
+.takanon_text{
+    color: #ffffff87;
+    position: absolute;
+    top: 25px;
+    right: 7px;
+    direction: rtl;
+}
+
+.popup_eula{
+    background-color: white;
+    width: 437px;
+    height: 427px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    border-radius: 20px;
+}
+
+.layout{
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000000c4;
+}
+
+.close_eula_popup{
+    color: red;
+    cursor: pointer;
 }
