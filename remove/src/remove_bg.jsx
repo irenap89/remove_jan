@@ -3,31 +3,47 @@ import './remove_bg.css'
 import close from './assets/close.png'
 import logo from './assets/logo.png'
 import banner from './assets/banner.png'
+import Download_img from './Download_img'
+import close_1 from './assets/close1.png'
+import download_folder from './assets/DownloadsFolder.png'
+import not_robot from './assets/not_robot.png'
 
 function Remove_bg() {
 
     const [tab_selected, settab_selected] = useState(1);
 
     const [show_eula_popup, set_show_eula_popup] = useState(false);
+    const [show_download_popup, set_show_download_popup] = useState(false);
+
+    function show_popup(){
+        set_show_download_popup(true);
+    }
     
     return (
         <>
         <div className='remove_bg_main'>
-            <div className='header_cont'>
-                <img src={close} className='close'/> 
 
-                <h1 className='main_title'>העלאת תמונה כדי להסיר את הרקע</h1>
-            </div> 
+            <div>   
+                <div className='header_cont'>
+                    <img src={close} className='close'/> 
 
-            <button className='upload_btn'>העלאת תמונה</button>
+                    <h1 className='main_title'>העלאת תמונה כדי להסיר את הרקע</h1>
+                </div> 
 
-            <div className='header_text'>פורמטים נתמכים png,jpeg</div>
+                <button className='upload_btn'>העלאת תמונה</button>
+
+                <div className='header_text'>פורמטים נתמכים png,jpeg</div>
+                
+            </div>
 
 
             <div className='middle_cont'>
                 <div className='right_div'>
                     <div className='right_div_inner'>
 
+                        <Download_img show_popup={show_popup} top_div="top_div" title="תמונה חינם" sub_title=" 612x408 תצוגה מקדימה של תמונה" btn_text="הורד" small_text="איכות טובה עד 0.25 מגה פיקסל"></Download_img>
+
+                        <Download_img show_popup={show_popup} top_div="bottom_div" title="Pro" sub_title=" 1280x1920  תמונה מלאה" btn_text="HD הורד" small_text="האיכות הטובה ביותר עד 25 מגה פיקסל"></Download_img>
 
                     </div>
 
@@ -83,6 +99,33 @@ function Remove_bg() {
                 hgfj fghj 
                 fdhjfghj 
                 hgfj fghj 
+            </div>
+
+
+        </>:<></>}
+
+
+        {show_download_popup?<>
+            <div className='layout'></div>
+
+            <div className='popup_dowbload'>
+                <img src={close_1}  onClick={()=>set_show_download_popup(false)}/>
+
+                    <div className='top_div_download'>
+                        <img src={download_folder}  className='download_folder'/>
+                    </div>
+
+                <div className='popup_download_title'>אישור להורדת תמונה</div>
+
+                <div  className='popup_download_subtitle'> האם להוריד את התמונה? </div>
+
+                <div className='not_robot_cont'>
+                    <input type='checkbox' />
+                    <div  className='not_robot_subtitle'> אני לא רובוט </div>
+                    <img src={not_robot} className='not_robot'/>
+
+                </div>
+             
             </div>
 
 
