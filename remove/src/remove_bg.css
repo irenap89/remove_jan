@@ -45,6 +45,7 @@
     background-image: url(./assets/Upload.png);
     background-repeat: no-repeat;
     background-position: 10px 8px;
+    cursor: pointer;
 
 }
 
@@ -234,6 +235,7 @@
     font-size: 20px;
     margin-top: 20px;
     direction: rtl;
+    font-family: sans-serif;
 }
 
 .not_robot_cont{
@@ -256,4 +258,46 @@
 .not_robot{
     width: 15px;
     height: 15px;
+}
+
+.approve_btn{
+    width: 185px;
+    height: 40px;
+    font-family: 'ADUMA';
+    background-color: transparent;
+    border-radius: 50px;
+    font-size: 20px;
+    background: linear-gradient(88deg, #c250e8, #03A9F4);
+    color: white;
+    border: 0;
+    cursor: pointer;
+}
+
+.cancel_btn{
+    width: 135px;
+    height: 40px;
+    color: #1a3a53;
+    font-family: 'ADUMA';
+    background-color: transparent;
+    border: 1px solid #1a3a53;
+    border-radius: 50px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.btn_cont{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 51px;
+
+}
+
+.close_1{
+    cursor: pointer;
+}
+
+.file_input{
+    display: none;
 }

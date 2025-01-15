@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import './remove_bg.css'
 import close from './assets/close.png'
 import logo from './assets/logo.png'
@@ -7,6 +7,8 @@ import Download_img from './Download_img'
 import close_1 from './assets/close1.png'
 import download_folder from './assets/DownloadsFolder.png'
 import not_robot from './assets/not_robot.png'
+import Tab_img from './tab_img'
+
 
 function Remove_bg() {
 
@@ -19,6 +21,14 @@ function Remove_bg() {
         set_show_download_popup(true);
     }
     
+
+    const inputElement = useRef();
+
+    const focusInput = () => {
+      inputElement.current.click();
+    };
+
+
     return (
         <>
         <div className='remove_bg_main'>
@@ -30,7 +40,9 @@ function Remove_bg() {
                     <h1 className='main_title'>העלאת תמונה כדי להסיר את הרקע</h1>
                 </div> 
 
-                <button className='upload_btn'>העלאת תמונה</button>
+                <button className='upload_btn' onClick={focusInput}>העלאת תמונה</button>
+
+                <input type="file" ref={inputElement} className='file_input'/>    
 
                 <div className='header_text'>פורמטים נתמכים png,jpeg</div>
                 
@@ -57,6 +69,9 @@ function Remove_bg() {
                     </div>
 
                     <div className='left_div_inner'>
+                        {tab_selected==1?<Tab_img tab_name="no_bg"/>:
+
+                        <Tab_img  tab_name="original"/>}
 
 
                     </div>
@@ -109,7 +124,7 @@ function Remove_bg() {
             <div className='layout'></div>
 
             <div className='popup_dowbload'>
-                <img src={close_1}  onClick={()=>set_show_download_popup(false)}/>
+                <img src={close_1} className='close_1' onClick={()=>set_show_download_popup(false)}/>
 
                     <div className='top_div_download'>
                         <img src={download_folder}  className='download_folder'/>
@@ -124,6 +139,11 @@ function Remove_bg() {
                     <div  className='not_robot_subtitle'> אני לא רובוט </div>
                     <img src={not_robot} className='not_robot'/>
 
+                </div>
+
+                <div className='btn_cont'>
+                    <button className='cancel_btn' onClick={()=>set_show_download_popup(false)}>ביטול</button>
+                    <button className='approve_btn'>אישור</button>
                 </div>
              
             </div>
