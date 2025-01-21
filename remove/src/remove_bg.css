@@ -301,3 +301,11 @@
 .file_input{
     display: none;
 }
+
+.file_err{
+    color: red;
+    position: absolute;
+    font-size: 13px;
+    left: 42px;
+    font-family: sans-serif;
+}

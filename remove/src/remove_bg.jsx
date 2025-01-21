@@ -8,7 +8,7 @@ import close_1 from './assets/close1.png'
 import download_folder from './assets/DownloadsFolder.png'
 import not_robot from './assets/not_robot.png'
 import Tab_img from './tab_img'
-
+import axios from 'axios';
 
 function Remove_bg() {
 
@@ -16,6 +16,8 @@ function Remove_bg() {
 
     const [show_eula_popup, set_show_eula_popup] = useState(false);
     const [show_download_popup, set_show_download_popup] = useState(false);
+    const [file_err, set_file_err] = useState('');
+
 
     function show_popup(){
         set_show_download_popup(true);
@@ -27,6 +29,45 @@ function Remove_bg() {
     const focusInput = () => {
       inputElement.current.click();
     };
+
+    function image_to_server(val){
+        set_file_err('');
+        let file= val.files[0]; 
+
+        if(file.type=="image/png" || file.type=="image/jpg" || file.type=="image/jpeg"){
+
+            if(file.size<=1000000){
+
+                var bodyFormData = new FormData();
+       
+                bodyFormData.append('img_data', file);
+
+                axios({
+                    method: "post",
+                    url: "http://localhost:5000/upload_img",
+                    data: bodyFormData,
+                    headers: { "Content-Type": "multipart/form-data" },
+                })
+                .then(function (response) {
+                    //handle success
+                    if (response.data.status && response.data.status==501){
+                        set_file_err(response.data.msg);
+                    } 
+                  
+                })
+                .catch(function (response) {
+                    //handle error
+                    console.log(response);
+                });
+            } else {
+                set_file_err('קובץ גדול מידי');
+            }
+
+        } else {
+            set_file_err('סוג קובץ לא נתמך');
+        }
+
+    }
 
 
     return (
@@ -42,9 +83,10 @@ function Remove_bg() {
 
                 <button className='upload_btn' onClick={focusInput}>העלאת תמונה</button>
 
-                <input type="file" ref={inputElement} className='file_input'/>    
+                <input type="file" ref={inputElement} className='file_input' onChange={(e)=>image_to_server(e.target)}/>    
 
                 <div className='header_text'>פורמטים נתמכים png,jpeg</div>
+                <div className='file_err'> {file_err} </div>
                 
             </div>
 
