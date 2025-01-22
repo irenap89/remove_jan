@@ -18,6 +18,12 @@ function Remove_bg() {
     const [show_download_popup, set_show_download_popup] = useState(false);
     const [file_err, set_file_err] = useState('');
 
+    const [no_bg_file, set_no_bg_file] = useState('');
+    const [selected_color, set_selected_color] = useState('');
+
+    const [show_loading, set_show_loading] = useState(false);
+
+
 
     function show_popup(){
         set_show_download_popup(true);
@@ -38,10 +44,12 @@ function Remove_bg() {
 
             if(file.size<=1000000){
 
+                set_show_loading(true);
                 var bodyFormData = new FormData();
        
                 bodyFormData.append('img_data', file);
-
+                bodyFormData.append('color', selected_color);
+                
                 axios({
                     method: "post",
                     url: "http://localhost:5000/upload_img",
@@ -52,7 +60,10 @@ function Remove_bg() {
                     //handle success
                     if (response.data.status && response.data.status==501){
                         set_file_err(response.data.msg);
-                    } 
+                    }  else  if (response.data.status && response.data.status==200){
+                        set_show_loading(false);
+                        set_no_bg_file(response.data.file_name);
+                    }
                   
                 })
                 .catch(function (response) {
@@ -111,9 +122,9 @@ function Remove_bg() {
                     </div>
 
                     <div className='left_div_inner'>
-                        {tab_selected==1?<Tab_img tab_name="no_bg"/>:
+                        {tab_selected==1?<Tab_img tab_name="no_bg" file_img={no_bg_file} set_selected_color={set_selected_color} show_loading={show_loading}/>:
 
-                        <Tab_img  tab_name="original"/>}
+                        <Tab_img  tab_name="original" file_img={no_bg_file}  set_selected_color={set_selected_color} show_loading={show_loading}/>}
 
 
                     </div>

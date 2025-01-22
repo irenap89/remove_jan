@@ -68,3 +68,35 @@
     position: relative;
     top: -25px;
 }
+
+.select_file_msg{
+    text-align: center;
+    color: #03a9f4a6;
+    font-family: sans-serif;
+    position: relative;
+    top: 150px;
+}
+
+.loading_cont{
+    height: 20px;
+    width: 350px;
+    margin: 0 auto;
+    margin-top: 101px;
+    background-color: black;
+    border-radius: 4px;
+    box-shadow: 1px 1px 10px #ffffff6b;
+}
+
+.loading_cont_inner{
+    width: 39%;
+    height: 18px;
+    text-align: center;
+    background: linear-gradient(45deg, #673AB7, #00BCD4);
+    position: relative;
+    top: 1px;
+    left: 1px;
+    border-radius: 2px;
+    font-family: sans-serif;
+    font-size: 12px;
+    line-height: 20px;
+}

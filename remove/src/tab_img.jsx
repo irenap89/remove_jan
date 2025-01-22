@@ -18,6 +18,7 @@ function Tab_img(props) {
     function get_selected_color(color){
 
         setcolor_selected(color);
+        props.set_selected_color(color)
     }
 
   return (
@@ -32,8 +33,17 @@ function Tab_img(props) {
             <input type="color" ref={inputElement} className='color_input' onChange={(e)=>get_selected_color(e.target.value)}/>
         </div>:<></>}
 
+        {props.file_img? <>
+        {props.tab_name=="no_bg"? <img src={'http://localhost:5000/no_bg_'+props.file_img} className={'img_1 '+ (props.tab_name!="no_bg"?"original_tab_img":"")}/> :
+        <img src={'http://localhost:5000/'+props.file_img} className={'img_1 '+ (props.tab_name!="no_bg"?"original_tab_img":"")}/>}</>: 
+        <div className='select_file_msg'>יש לבחור תמונה</div>}
 
-        <img src={img_1} className={'img_1 '+ (props.tab_name!="no_bg"?"original_tab_img":"")}/>
+        
+        {props.show_loading?
+        <div className='loading_cont'>
+            <div className='loading_cont_inner'>39%</div>
+        </div> : <></>}
+     
 
     </div>
   )
