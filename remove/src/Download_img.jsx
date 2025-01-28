@@ -14,7 +14,7 @@ function Download_img(props) {
         {props.top_div=="bottom_div" ? <img src={new_icon} className='new_icon'/> : <></>}
         <div className='download_img_subtitle '> {props.sub_title}</div>
 
-        <button className='btn_text' onClick={()=>props.show_popup()}>{props.btn_text}</button>
+        <button className={(props.img_to_download? 'btn_text ' : 'btn_text_disabled') } onClick={()=>{props.img_to_download?props.show_popup():''}}>{props.btn_text}</button>
         
         <div className='small_text'>{props.small_text}</div>
 

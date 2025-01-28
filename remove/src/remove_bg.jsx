@@ -6,7 +6,7 @@ import banner from './assets/banner.png'
 import Download_img from './Download_img'
 import close_1 from './assets/close1.png'
 import download_folder from './assets/DownloadsFolder.png'
-import not_robot from './assets/not_robot.png'
+import not_robot_img from './assets/not_robot.png'
 import Tab_img from './tab_img'
 import axios from 'axios';
 
@@ -23,7 +23,9 @@ function Remove_bg() {
 
     const [show_loading, set_show_loading] = useState(false);
 
-
+    const [not_robot, set_not_robot] = useState(false);
+    const [not_robot_err, set_not_robot_err] = useState('');
+    
 
     function show_popup(){
         set_show_download_popup(true);
@@ -81,6 +83,32 @@ function Remove_bg() {
     }
 
 
+    function download_final_img(){
+
+        if (not_robot ){
+
+            fetch('http://localhost:5000/no_bg_'+no_bg_file)
+                .then(response => {
+                    response.blob().then(blob => {
+                        let url = window.URL.createObjectURL(blob);
+                        let a = document.createElement('a');
+                        a.href = url;
+                        a.download = 'no_bg_'+no_bg_file;
+                        a.click();
+                    });
+                    //window.location.href = response.url;
+
+                    set_show_download_popup(false);
+            });
+
+        } else {
+            set_not_robot_err('יש לסמן אני לא רובוט');    
+
+        }
+
+    }
+
+
     return (
         <>
         <div className='remove_bg_main'>
@@ -106,9 +134,9 @@ function Remove_bg() {
                 <div className='right_div'>
                     <div className='right_div_inner'>
 
-                        <Download_img show_popup={show_popup} top_div="top_div" title="תמונה חינם" sub_title=" 612x408 תצוגה מקדימה של תמונה" btn_text="הורד" small_text="איכות טובה עד 0.25 מגה פיקסל"></Download_img>
+                        <Download_img img_to_download={no_bg_file} show_popup={show_popup} top_div="top_div" title="תמונה חינם" sub_title=" 612x408 תצוגה מקדימה של תמונה" btn_text="הורד" small_text="איכות טובה עד 0.25 מגה פיקסל"></Download_img>
 
-                        <Download_img show_popup={show_popup} top_div="bottom_div" title="Pro" sub_title=" 1280x1920  תמונה מלאה" btn_text="HD הורד" small_text="האיכות הטובה ביותר עד 25 מגה פיקסל"></Download_img>
+                        <Download_img img_to_download={no_bg_file}  show_popup={show_popup} top_div="bottom_div" title="Pro" sub_title=" 1280x1920  תמונה מלאה" btn_text="HD הורד" small_text="האיכות הטובה ביותר עד 25 מגה פיקסל"></Download_img>
 
                     </div>
 
@@ -117,7 +145,7 @@ function Remove_bg() {
                 <div className='left_div'>
 
                     <div className='tabs_cont'>
-                        <div className={'tabs_1 ' + (tab_selected==1? 'tab_selected': '') } onClick={()=>settab_selected(1)}>הוסר רקע</div>
+                        <div className={'tabs_1 ' + (tab_selected==1? 'tab_selected': '') } onClick={()=>settab_selected(1)}>ללא רקע</div>
                         <div className={'tabs_2 ' + (tab_selected==2? 'tab_selected': '') } onClick={()=>settab_selected(2)}>מקורי</div>
                     </div>
 
@@ -188,15 +216,17 @@ function Remove_bg() {
                 <div  className='popup_download_subtitle'> האם להוריד את התמונה? </div>
 
                 <div className='not_robot_cont'>
-                    <input type='checkbox' />
+                    <input type='checkbox' onChange={()=>set_not_robot(true)}/>
                     <div  className='not_robot_subtitle'> אני לא רובוט </div>
-                    <img src={not_robot} className='not_robot'/>
+                    <img src={not_robot_img} className='not_robot'/>
+
+                    <div className='err_msg'> {not_robot_err} </div>
 
                 </div>
 
                 <div className='btn_cont'>
                     <button className='cancel_btn' onClick={()=>set_show_download_popup(false)}>ביטול</button>
-                    <button className='approve_btn'>אישור</button>
+                    <button className='approve_btn' onClick={()=>download_final_img()}>אישור</button>
                 </div>
              
             </div>

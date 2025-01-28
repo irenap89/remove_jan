@@ -309,3 +309,11 @@
     left: 42px;
     font-family: sans-serif;
 }
+
+.err_msg{
+    color: red;
+    position: absolute;
+    font-size: 13px;
+    font-family: sans-serif;
+    margin-top: 25px;
+}
