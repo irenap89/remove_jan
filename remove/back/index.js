@@ -2,7 +2,7 @@ import express from 'express'
 import cors from 'cors'
 import fileupload from 'express-fileupload'
 import fs from "node:fs";
-
+import sql from 'mssql'
 
 const app = express()
 
@@ -13,8 +13,66 @@ app.use(express.static("img_upload"));
 app.use(express.static("no_bg_upload"));
 
 
+
+// SQL Server configuration
+var config = {
+  "user": "sa", 
+  "password": "!transway123", // Database password
+  "server": "IRENA", // Server IP address
+  "database": "remove_bg", // Database name
+  "options": {
+      "trustServerCertificate": true, 
+      "trustedConnection": false ,
+      "enableArithAbort": true,
+      "instancename":"SQLEXPRESS",
+
+  },
+  port:1433
+}
+
+// Connect to SQL Server
+sql.connect(config, err => {
+  if (err) {
+      throw err;
+  }
+  console.log("Connection Successful!");
+});
+
+
+
+
 app.get('/test', function (req, res) {
-  res.send('Hello World gfhfghj dfgj')
+
+
+
+
+
+})
+
+
+
+
+app.post('/register', function (req, res) {
+
+  console.log(req.body);
+
+
+  var request = new sql.Request();
+
+  //check if user allready exist
+                
+  let sql_q_2 ="insert into Users (userName,password,email,phone) values ('"+req.body.userName+"','"
+  +req.body.password+"','"+req.body.email+"','"+req.body.phone+"')";
+
+  // console.log(sql_q_2);
+
+  // query to the database and get the records
+  request.query(sql_q_2, function (err, recordset3) {
+      // send records as a response
+      res.send('register_sucsess')
+  });
+
+
 })
 
 

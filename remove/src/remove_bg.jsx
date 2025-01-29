@@ -5,6 +5,7 @@ import logo from './assets/logo.png'
 import banner from './assets/banner.png'
 import Download_img from './Download_img'
 import close_1 from './assets/close1.png'
+import close_img from './assets/close.png'
 import download_folder from './assets/DownloadsFolder.png'
 import not_robot_img from './assets/not_robot.png'
 import Tab_img from './tab_img'
@@ -186,15 +187,8 @@ function Remove_bg() {
 
             <div className='popup_eula'>
 
-                <div className='close_eula_popup' onClick={()=>set_show_eula_popup(false)}>X</div>
-                fdhjfghj 
-                hgfj fghj 
-                fdhjfghj 
-                hgfj fghj 
-                fdhjfghj 
-                hgfj fghj 
-                fdhjfghj 
-                hgfj fghj 
+                <div className='close_eula_popup' onClick={()=>set_show_eula_popup(false)}><img src={close_img} className='close_img'/></div>
+                לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית הועניב היושבב שערש שמחויט - שלושע ותלברו חשלו שעותלשך וחאית נובש ערששף. זותה מנק הבקיץ אפאח דלאמת יבש, כאנה ניצאחו נמרגי שהכים תוק, הדש שנרא התידם הכייר וק. הועניב היושבב שערש שמחויט - שלושע ותלברו חשלו שעותלשך וחאית נובש ערששף. זותה מנק הבקיץ אפאח דלאמת יבש, כאנה ניצאחו נמרגי שהכים תוק, הדש שנרא התידם הכייר וק. קוואזי במר מודוף. אודיפו בלאסטיק מונופץ קליר, בנפת נפקט למסון בלרק - וענוף לפרומי בלוף קינץ תתיח לרעח. לת צשחמי צש בליא, מנסוטו צמלח לביקו ננבי, צמוקו בלוקריה שיצמה ברורק. גולר מונפרר סוברט לורם שבצק יהול, לכנוץ בעריר גק ליץ, ושבעגט ליבם סולגק. בראיט ולחת צורק מונחף, בגורמי מגמש. תרבנך וסתעד לכנו סתשם השמה - לתכי מורגם בורק? לתיג ישבעס.
             </div>
 
 
