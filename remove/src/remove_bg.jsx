@@ -28,6 +28,9 @@ function Remove_bg() {
     const [not_robot_err, set_not_robot_err] = useState('');
     
 
+    const [user_data, set_user_data] = useState( localStorage.getItem("userId").split("|")[1]);
+ 
+
     function show_popup(){
         set_show_download_popup(true);
     }
@@ -117,7 +120,7 @@ function Remove_bg() {
             <div>   
                 <div className='header_cont'>
                     <img src={close} className='close'/> 
-
+                    <span className='welcome_text'> היי, {user_data} </span>
                     <h1 className='main_title'>העלאת תמונה כדי להסיר את הרקע</h1>
                 </div> 
 

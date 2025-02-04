@@ -59,21 +59,69 @@ app.post('/register', function (req, res) {
 
   var request = new sql.Request();
 
+  
+
+  let sql_q_1 ="select * from Users where userName='" + req.body.userName + "'";
+
+                
+  let sql_q_2 ="insert into Users (userName,password,email,phone,country) values ('"+req.body.userName+"','"
+  +req.body.password+"','"+req.body.email+"','"+req.body.phone+"','"+req.body.selected_country+"')";
+
+
+  request.query(sql_q_1, function (err, recordset3) {
+    // send records as a response
+    let res_f={};
+
+    if (recordset3.recordset.length==0){
+        // console.log(sql_q_2);
+
+        // query to the database and get the records
+        request.query(sql_q_2, function (err, recordset3) {
+            // send records as a response
+            res.send('register_sucsess')
+        });
+
+    } else {
+      res.send('username_allready_exist')
+    }
+
+  });
+
+
+})
+
+
+
+app.post('/login', function (req, res) {
+
+  console.log(req.body);
+
+
+  var request = new sql.Request();
+
   //check if user allready exist
                 
-  let sql_q_2 ="insert into Users (userName,password,email,phone) values ('"+req.body.userName+"','"
-  +req.body.password+"','"+req.body.email+"','"+req.body.phone+"')";
+  let sql_q_2 ="select * from Users where userName='" + req.body.userName + "' and password ='" + req.body.password + "'";
 
   // console.log(sql_q_2);
 
   // query to the database and get the records
   request.query(sql_q_2, function (err, recordset3) {
       // send records as a response
-      res.send('register_sucsess')
+      let res_f={};
+
+      if (recordset3.recordset.length>0){
+        res_f={status: 200, 'success':true, user: recordset3}
+      } else {
+        res_f={status: 201, 'success':false, user: null}
+      }
+
+      res.send(res_f)
   });
 
 
 })
+
 
 
 app.post('/upload_img', function (req, res) {
